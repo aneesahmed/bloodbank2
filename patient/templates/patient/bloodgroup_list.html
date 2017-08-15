@@ -1,0 +1,39 @@
+{% extends "patient/header.html" %}
+
+{% block sidebar %}
+    <ul>
+        <li href="#">abcd</li>
+    </ul>
+{% endblock %}
+{% block content %}
+<div class="container-fluid text-center">
+    <div class="panel col-sm-6 col-lg-12 ">
+        <div class="panel-body" style="background-color:#{{statusColor}};color:#FFFFFF">
+
+            <div class="well">
+
+                <a href="{% url 'patient:bloodgroup-add'  %}  ">add new entry</a></div>
+
+            </div>
+        </div>
+
+      {% if groupList %}
+      <table class="table table-striped table-bordered table-condensed">
+        {% for bloodgroup in groupList %}
+       <tr>
+            <td><a href = "{% url 'patient:bloodgroup-detail'  bloodgroup.bloodgroupId %}"> {{bloodgroup.bloodgroupId}} {{bloodgroup.bloodgroupDetails }}</a></td>
+            <td align="center">    <a href="#" class="btn btn-info" role="button">Edit</a></td>
+            <td align ="center">    <a href="#" class="btn btn-info" role="button">delete</a></td>
+
+        </tr>
+     {% endfor %}
+      </table>
+      {% else %}
+      <div class="well">
+        <p>No bloodgroup available.</p>
+      </div>
+    {% endif %}
+ 
+</body>
+</html>
+{% endblock %}
