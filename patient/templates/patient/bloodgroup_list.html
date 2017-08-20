@@ -2,7 +2,7 @@
 
 {% block sidebar %}
     <ul>
-        <li href="#">abcd</li>
+        <li href="#">test</li>
     </ul>
 {% endblock %}
 {% block content %}
@@ -12,26 +12,26 @@
 
             <div class="well">
 
-                <a href="{% url 'patient:bloodgroup-add'  %}  ">add new entry</a></div>
+                <a href="{% url 'patient:bloodgroup-add'  %}  ">add new Blood Group entry</a></div>
 
             </div>
         </div>
 
       {% if groupList %}
-      <table class="table table-striped table-bordered table-condensed">
-        {% for bloodgroup in groupList %}
-       <tr>
-            <td><a href = "{% url 'patient:bloodgroup-detail'  bloodgroup.bloodgroupId %}"> {{bloodgroup.bloodgroupId}} {{bloodgroup.bloodgroupDetails }}</a></td>
-            <td align="center">    <a href="#" class="btn btn-info" role="button">Edit</a></td>
-            <td align ="center">    <a href="#" class="btn btn-info" role="button">delete</a></td>
+          <table class="table table-striped table-bordered table-condensed">
+            {% for bloodgroup in groupList %}
+               <tr>
+                    <td><a href = "{% url 'patient:bloodgroup-detail'  bloodgroup.bloodgroupId %}"> {{bloodgroup.bloodgroupId}} {{bloodgroup.bloodgroupDetails }} {{bloodgroup.bloodgroupType}}</a></td>
+                    <td align="center"><a href="{% url 'patient:bloodgroup-update'  bloodgroup.bloodgroupId %}" class="btn btn-info" role="button">Edit</a></td>
+                    <td align ="center"><a href="{% url 'patient:bloodgroup-delete'  bloodgroup.bloodgroupId %}" class="btn btn-info" role="button"> delete</a></td>
 
-        </tr>
-     {% endfor %}
-      </table>
+                </tr>
+            {% endfor %}
+          </table>
       {% else %}
-      <div class="well">
-        <p>No bloodgroup available.</p>
-      </div>
+          <div class="well">
+            <p>No bloodgroup available.</p>
+          </div>
     {% endif %}
  
 </body>

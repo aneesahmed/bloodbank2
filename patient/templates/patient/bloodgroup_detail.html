@@ -7,18 +7,55 @@
 {% endblock %}
 {% block content %}
 
+    <b>Blood Group </b>
 <div align="center" class="panel panel-primary col-lg-12" style="padding: 10px;" border="1">
+
     <table class="table table-hover">
         <tr>
-            <td class="warning">Id</td><td > {{ bloodgroup.bloodgroupId }}</td>
-
-            <td class="warning">BloodGroup Details</td><td >{{ sprint.bloodgroup.bloodgroupDetail }}</td>
+            <td class="warning">Id</td><td > {{ bloodgroup.bloodgroupId }} </td>
+        </tr>
+        <tr>
+            <td class="warning">BloodGroup Details</td><td >{{bloodgroup.bloodgroupDetails }}</td>
+        </tr>
+        <tr>
+            <td class="warning">BloodGroup Type</td><td >{{bloodgroup.bloodgroupType }}</td>
         </tr>
 
       
     </table>
+
 </div>
-<br />
+
+    <br />
+      <div class="panel col-sm-6 col-lg-12 ">
+        <div class="panel-body" style="background-color:#{{statusColor}};color:#FFFFFF">
+
+            <div class="well">
+                <a href="{% url 'patient:patient-add' bloodgroup.bloodgroupId  %}  ">add new patient</a></div>
+
+            </div>
+        </div>
+    <b>Patients List</b>
+          <table class="table table-striped table-bordered table-condensed">
+              <tr>
+                    <td> Patient ID </td>
+                    <td> Patient Name </td>
+                    <td> Patient Blood Group</td>
+                </tr>
+              {% for patient in bloodgroup.patient_set.all %}
+               <tr>
+                    <td> {{patient.id}} </td>
+                    <td> {{patient.name }} </td>
+                    <td> {{patient.bloodgroupId}}</td>
+                    <td align="center"><a href="{% url 'patient:patient-update'  patient.id %}" class="btn btn-info" role="button">Edit</a></td>
+                    <td align ="center"><a href="{% url 'patient:patient-delete'  patient.id  %}" class="btn btn-info" role="button"> delete</a></td>
+
+                </tr>
+
+
+            {% endfor %}
+          </table>
+
 
 
 </div>
