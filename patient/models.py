@@ -14,10 +14,10 @@ class Bloodgroup(models.Model):
         return  str(str(self.bloodgroupId) + '-' + self.bloodgroupDetails + '-' + self.bloodgroupType )
     def get_absolute_url(self):
 
-    #    """
+       """
     #    Returns the url to access a particular book instance.
     #    """
-        return reverse('patient:bloodgroup-list')
+     #   return reverse('patient:bloodgroup-list')
 
 class Meta:
     managed = True
