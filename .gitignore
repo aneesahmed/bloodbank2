@@ -1,0 +1,5 @@
+scrum/migrations/__pycache__
+scrum/__pycache__/
+scrum/views/__pycache__/
+scrum/submodels/__pycache__/
+ .idea/
