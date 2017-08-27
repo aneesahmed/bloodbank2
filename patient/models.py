@@ -20,13 +20,26 @@ class Bloodgroup(models.Model):
      #   return reverse('patient:bloodgroup-list')
 
 class Meta:
-    managed = True
+    managed = True # table creating by django
     #db_table = 'bloodgroup'
+
+class City(models.Model):
+    cityid = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.cityid) + '-' + self.name
+
+
+class Meta:
+    managed = True # table creating by django
+    #db_table = 'city'
 
 class Patient(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    bloodgroupId = models.ForeignKey('BloodGroup', models.DO_NOTHING, db_column='bloodgroupid')
+    bloodgroupId = models.ForeignKey('Bloodgroup', models.DO_NOTHING, db_column='bloodgroupid')
+    cityid = models.ForeignKey('City', models.DO_NOTHING, db_column='cityid')
 
     def __str__(self):
         return  str(str(self.id) + '-' + self.name + str(self.bloodgroupId) )

@@ -1,9 +1,29 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.views.generic import  ListView, CreateView, DetailView, DeleteView, UpdateView
 from patient.models import Bloodgroup, Patient
+from rest_framework import generics # related to rest-framework
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+
+from patient.serializers import BloodgroupSerializer
+
 from patient.forms import  BloodgroupForm
 
 # Create your views here.
+class BloodgroupRestList(generics.ListAPIView):
+    queryset = Bloodgroup.objects.all()
+    serializer_class = BloodgroupSerializer
+
+class BloodgroupRestDetails(generics.RetrieveAPIView):
+    queryset = Bloodgroup.objects.all()
+    serializer_class = BloodgroupSerializer
+
+class BloodgroupRestCreate(generics.ListCreateAPIView):
+    queryset = Bloodgroup.objects.all()
+
+    serializer_class = BloodgroupSerializer
+
+
 class BloodgroupList(ListView):
     model = Bloodgroup
     template_name = 'patient/bloodgroup_list.html'
