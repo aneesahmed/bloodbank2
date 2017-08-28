@@ -1,9 +1,20 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
+from django.views.generic import TemplateView
 from patient.models import Bloodgroup, Patient
 from patient.forms import  BloodgroupForm
+from django.db.models import Count,Avg, Max, Min
 
 # Create your views here.
+
+class BloodgroupSummary(TemplateView):
+    template_name = "patient/summary.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(BloodgroupSummary, self).get_context_data(**kwargs)
+        context['groupwise_count'] = Bloodgroup.objects.annotate(Count('patient'))
+        return context
+
 class BloodgroupList(ListView):
     model = Bloodgroup
     template_name = 'patient/bloodgroup_list.html'

@@ -2,12 +2,13 @@
 from django.conf.urls import url
 from patient.views import BloodgroupList, BloodgroupDetail
 from patient.views import BloodgroupCreate , BloodgroupDelete ,BloodgroupUpdate
-from patient.views import PatientCreate, PatientUpdate , PatientDelete
+from patient.views import PatientCreate, PatientUpdate , PatientDelete, BloodgroupSummary
 
 app_name = 'patient'
 
 # release Release
 urlpatterns = [
+    url(r'^summary', BloodgroupSummary.as_view(), name='bloodgroup-summary'),
     url(r'^$', BloodgroupList.as_view(), name='bloodgroup-list'),
     url(r'^bloodgroup/(?P<pk>\d+)$', BloodgroupDetail.as_view(), name='bloodgroup-detail'),
     url(r'^bloodgroup/add/', BloodgroupCreate.as_view(), name='bloodgroup-add'),
