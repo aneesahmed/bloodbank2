@@ -1,0 +1,6 @@
+bloodbank2/__pycache__
+patient/migrations/__pycache__
+patient/__pycache__/
+patient/views/__pycache__/
+patient/submodels/__pycache__/
+ .idea/
